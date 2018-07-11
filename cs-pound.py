@@ -334,7 +334,7 @@ async def autoremind(ctx, args=''):  # Auto Remind command
 
     if args == 'off':  # If user wants to turn off Auto Remind
         if id_exists == '':  # If user doesn't exist in database
-            embed = discord.Embed(title='Auto Remind', description='You don\'t have Auto Remind setup {0.mention}!'.format(ctx.message.author), colour=0xff5252)  # Create embed
+            embed = discord.Embed(title='Auto Remind', description='You don\'t have Auto Remind setup!', colour=0xff5252)  # Create embed
         else:  # If user exists
             sed_statement = 'sed -i.bak ' + id_exists + 'd autoremind.txt'  # sed statement
             subprocess.Popen(sed_statement, shell=True)  # Run sed statement
@@ -362,7 +362,7 @@ async def autoremind(ctx, args=''):  # Auto Remind command
                 embed = discord.Embed(title='Auto Remind', description='That time is too far!', colour=0xff5252)  # Create embed
             else:  # If time is less than 60 minutes
                 if id_exists != '':  # If user has already set an Auto Remind
-                    embed = discord.Embed(title='Auto Remind', description='You already have Auto Remind setup {0.mention}!'.format(ctx.message.author), colour=0xff5252)  # Create embed
+                    embed = discord.Embed(title='Auto Remind', description='You already have Auto Remind setup!', colour=0xff5252)  # Create embed
                 else:  # If user doesn't have an Auto Remind setup
                     text = ctx.message.server.id + ' ' + ctx.message.channel.id + ' ' + ctx.message.author.id + ' ' + args + '\n'  # Write in the format 'SERVER_ID CHANNEL_ID USER_ID REMIND_TIME'
                     with open('autoremind.txt', 'a+') as file:  # Open autoremind.txt
@@ -689,7 +689,10 @@ async def compose_message(time):  # Function to compose and send mention message
             message = time + ' minutes until pound opens! '
         for j in range(len(user_ids)):  # For each Discord user
             message += '<@' + user_ids[j] + '> '  # Message format for mentioning users | <@USER_ID>
-        await client.send_message(client.get_channel(channel_ids[i]), content=message)  # Send message to Discord channel with mention message
+        try:
+            await client.send_message(client.get_channel(channel_ids[i]), content=message)  # Send message to Discord channel with mention message
+        except discord.errors.NotFound:
+            pass
 
 
 async def minute_check(time):  # Function to check if any user has Auto Remind setup at 'time'
