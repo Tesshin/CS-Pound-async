@@ -1,5 +1,7 @@
 # CS Pound Discord Bot
 
+**The async version of CS-Pound is no longer being maintained! To receive the latest updates head to the rewrite branch!**
+
 A Discord bot for the online virtual pet adopting website. With the bot you can view pet information and pound opening times straight in Discord without needing to access the website.
 
 ### Features
