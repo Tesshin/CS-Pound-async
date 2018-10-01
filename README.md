@@ -48,7 +48,7 @@ python3 cs-pound.py
 
 ## Authors
 
-* **Oliver Lin** - [@Rowlie](https://gitlab.com/Rowlie)
+* **Oliver Lin** - [@Tesshin](https://github.com/Tesshin)
 
 ## License
 
